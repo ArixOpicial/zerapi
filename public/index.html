@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <audio autoplay Loop>
+        <source src="anu.mp3" type="audio/mpeg">
+    </audio>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZeroDev API</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="api-header">
+        <button class="theme-toggle">&#9728; / &#9790;</button>
+        <h1>Zero <span>Dev</span> API</h1>
+        <p class="subtitle">Api Integrasi Order Kuota by Zero Developer</p>
+    </header>
+
+    <main class="main-content">
+        <section class="api-section">
+            <h2>API Endpoints</h2>
+            <div class="endpoint">
+                <div class="details">
+                    <span class="method">GET</span>
+                    <span class="description">Create Payment</span>
+                </div>
+                <a href="/createpayment?apikey=&amount=&codeqr=" target="_blank" class="try-btn">TRY</a>
+            </div>
+            <div class="endpoint">
+                <div class="details">
+                    <span class="method">GET</span>
+                    <span class="description">Cek Status</span>
+                </div>
+                <a href="/cekstatus?apikey=&merchant=&keyorkut=" target="_blank" class="try-btn">TRY</a>
+            </div>
+            <div class="endpoint">
+                <div class="details">
+                    <span class="method">GET</span>
+                    <span class="description">Cek Saldo <span class="coming-soon">[Coming Soon]</span></span>
+                </div>
+                <a href="/ceksaldo?apikey=&merchant=&pin=&password=" target="_blank" class="try-btn disabled">TRY</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 Zero Dev All rights reserved.</p>
+    </footer>
+
+    <audio id="background-audio">
+        <source src="anu.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        document.querySelector('.theme-toggle').addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+        });
+
+         const audio = document.getElementById('background-audio');
+
+        document.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play().catch(err => console.error('Failed to play audio:', err));
+            }
+        });
+
+        audio.addEventListener('ended', () => {
+            audio.currentTime = 0; // Reset to start
+            audio.play().catch(err => console.error('Failed to restart audio:', err));
+        });
+
+        window.addEventListener('load', () => {
+            if (audio.paused) {
+                audio.play().catch(err => console.log('Autoplay failed, waiting for user interaction:', err));
+            }
+        });
+    </script>
+</body>
+</html>
