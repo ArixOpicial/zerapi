@@ -2,7 +2,7 @@ const axios = require('axios');
 
 module.exports = function(app) {
   // API Key yang valid
-  const ApikeyReal = "linebaik"; // API key yang harus digunakan
+  const ApikeyReal = "zerodev"; // API key yang harus digunakan
   const apiKeyExternal = "linebaik"; // API key untuk API eksternal
 
   // Fungsi untuk membuat pembayaran
