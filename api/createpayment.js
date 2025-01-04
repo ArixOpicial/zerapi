@@ -59,7 +59,7 @@ module.exports = function(app) {
       // Jika API key valid, kembalikan respons yang sukses
       res.status(200).json({
         status: 200,
-        creator: "ArixOffc",
+        creator: "ZeroDev",
         data: response
       });
     } catch (error) {
