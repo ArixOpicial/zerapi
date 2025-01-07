@@ -19,7 +19,8 @@ module.exports = function(app) {
       const response = await axios.get(url);
 
       if (response.data.status) {
-        return response.data;
+        // Hanya mengembalikan bagian 'result' dari respons API eksternal
+        return response.data.result;
       } else {
         throw new Error('API Error: Response status is false');
       }
@@ -49,18 +50,18 @@ module.exports = function(app) {
       }
 
       // Panggil fungsi untuk membuat pembayaran jika API key valid
-      const response = await createPayment(apikey, amount, codeqr);
+      const result = await createPayment(apikey, amount, codeqr);
 
-      // Jika ada error dalam response
-      if (response.error) {
-        return res.status(401).json({ error: response.error });
+      // Jika ada error dalam result
+      if (result.error) {
+        return res.status(401).json({ error: result.error });
       }
 
-      // Jika API key valid, kembalikan respons yang sukses
+      // Jika API key valid, kembalikan respons dengan hanya bagian 'result'
       res.status(200).json({
         status: 200,
         creator: "ZeroDev",
-        data: response
+        result: result
       });
     } catch (error) {
       res.status(500).json({ error: 'Terjadi kesalahan pada server.', message: error.message });
